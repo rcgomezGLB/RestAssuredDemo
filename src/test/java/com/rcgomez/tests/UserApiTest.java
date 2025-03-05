@@ -24,7 +24,7 @@ public class UserApiTest extends TestRunner {
         String username = "testuser_" + UUID.randomUUID();
 
         Random random = new Random();
-        int id = random.nextInt(100000);
+        long id = random.nextLong(100000);
 
         userDTO = UserDTO.builder()
                 .id(id)

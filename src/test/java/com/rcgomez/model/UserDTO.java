@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserDTO {
-    private Integer id;
+    private Long id;
     private String username;
     private String firstName;
     private String lastName;
