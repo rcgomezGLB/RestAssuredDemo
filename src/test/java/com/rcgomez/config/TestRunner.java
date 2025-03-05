@@ -16,7 +16,7 @@ public class TestRunner {
     @BeforeSuite
     public void setUpEnvironment() {
         loadProperties();
-        baseUrl = getConfigVariable("url.base");
+        baseUrl = getConfigVariable();
     }
 
     private void loadProperties(){
@@ -28,8 +28,8 @@ public class TestRunner {
         }
     }
 
-    private String getConfigVariable(String key) {
-        return PROPERTIES.getProperty(key);
+    private String getConfigVariable() {
+        return PROPERTIES.getProperty("url.base");
     }
 
     public String getBaseUrl() {

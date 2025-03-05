@@ -1,10 +1,8 @@
 package com.rcgomez.tests;
 
 import com.rcgomez.config.TestRunner;
-import com.rcgomez.model.ListPetsDTO;
 import com.rcgomez.model.PetDTO;
 import com.rcgomez.request.RequestBuilder;
-import io.restassured.common.mapper.TypeRef;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
