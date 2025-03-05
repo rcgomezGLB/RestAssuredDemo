@@ -4,9 +4,12 @@
 
     <test name="User Tests">
         <classes>
-            <class name="com.globant.automation.tests.GetUserTest"></class>
-            <class name="com.globant.automation.tests.PostUserTest"></class>
-            <class name="com.globant.automation.tests.GetAllUserTests"></class>
+            <class name="com.rcgomez.tests.UserApiTest"/>
+        </classes>
+    </test>
+    <test name="Pets Tests">
+        <classes>
+            <class name="com.rcgomez.tests.PetEndpointTest"/>
         </classes>
     </test>
 </suite>
