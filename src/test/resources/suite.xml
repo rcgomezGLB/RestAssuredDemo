@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="ApiTest suite" verbose="1">
+
+    <test name="User Tests">
+        <classes>
+            <class name="com.globant.automation.tests.GetUserTest"></class>
+            <class name="com.globant.automation.tests.PostUserTest"></class>
+            <class name="com.globant.automation.tests.GetAllUserTests"></class>
+        </classes>
+    </test>
+</suite>
