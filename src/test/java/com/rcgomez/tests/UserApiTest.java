@@ -38,7 +38,7 @@ public class UserApiTest extends TestRunner {
                 .build();
     }
 
-    // This test fails randomly
+    // This test fails randomly, re-run if necessary.
     @Test(testName = "User is created successfully")
     public void createUserTest() {
         Response createResponse = RequestBuilder.postRequest(getBaseUrl(), "/user", userDTO);
