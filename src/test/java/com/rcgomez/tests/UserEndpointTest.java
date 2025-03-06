@@ -7,6 +7,7 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
@@ -18,7 +19,7 @@ public class UserEndpointTest extends TestRunner {
 
     private UserDTO userDTO;
 
-    @BeforeClass
+    @BeforeMethod
     public void setUp() {
         // Create random unique username
         String username = "testuser_" + UUID.randomUUID();
@@ -50,24 +51,38 @@ public class UserEndpointTest extends TestRunner {
         Assert.assertEquals(userResponseDTO,userDTO);
     }
 
-    @Test(testName = "User is logged in successfully", dependsOnMethods = {"createUserTest"})
+    @Test(testName = "User is logged in successfully")
     public void logInTest() {
+
+        // Create a different user
 
         Map<String, String> queryParams = new HashMap<>();
 
         queryParams.put("username", userDTO.getUsername());
         queryParams.put("password", userDTO.getPassword());
 
+        Response createResponse = RequestBuilder.postRequest(getBaseUrl(), "/user", userDTO);
         Response response = RequestBuilder.getRequestWithParams(getBaseUrl(),"/user/login",queryParams);
         JsonPath jsonPath = response.jsonPath();
 
+        Assert.assertEquals(createResponse.getStatusCode(),200, "User creation failed");
         Assert.assertEquals(response.getStatusCode(),200);
         Assert.assertTrue(jsonPath.getString("message").contains("logged in"));
     }
 
-    @Test(testName = "User is logged out successfully", dependsOnMethods = {"logInTest"})
+    @Test(testName = "User is logged out successfully")
     public void logOutTest(){
-        Response response = RequestBuilder.getRequest(getBaseUrl(),"/user/logout");
-        Assert.assertEquals(response.getStatusCode(),200);
+
+        Map<String, String> queryParams = new HashMap<>();
+        queryParams.put("username", userDTO.getUsername());
+        queryParams.put("password", userDTO.getPassword());
+
+        Response createResponse = RequestBuilder.postRequest(getBaseUrl(), "/user", userDTO);
+        Response responseLogIn = RequestBuilder.getRequestWithParams(getBaseUrl(),"/user/login",queryParams);
+        Response responseLogOut = RequestBuilder.getRequest(getBaseUrl(),"/user/logout");
+
+        Assert.assertEquals(createResponse.getStatusCode(),200, "Failed to create user");
+        Assert.assertEquals(responseLogIn.getStatusCode(),200, "Failed to log in");
+        Assert.assertEquals(responseLogOut.getStatusCode(),200);
     }
 }
