@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
-public class UserApiTest extends TestRunner {
+public class UserEndpointTest extends TestRunner {
 
     private UserDTO userDTO;
 

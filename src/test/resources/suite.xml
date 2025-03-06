@@ -1,15 +1,20 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="ApiTest suite" verbose="1">
+<suite name="ApiTest suite" verbose="1" thread-count="6" parallel="tests">
 
     <test name="User Tests">
         <classes>
-            <class name="com.rcgomez.tests.UserApiTest"/>
+            <class name="com.rcgomez.tests.UserEndpointTest"/>
         </classes>
     </test>
     <test name="Pets Tests">
         <classes>
             <class name="com.rcgomez.tests.PetEndpointTest"/>
+        </classes>
+    </test>
+    <test name="Order Tests">
+        <classes>
+            <class name="com.rcgomez.tests.StoreOrderTest"/>
         </classes>
     </test>
 </suite>

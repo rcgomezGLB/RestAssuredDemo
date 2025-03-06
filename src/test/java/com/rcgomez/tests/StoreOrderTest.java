@@ -17,8 +17,8 @@ public class StoreOrderTest extends TestRunner {
         Random random = new Random();
 
         OrderDTO orderDTO = OrderDTO.builder()
-                .id(random.nextLong(100000))
-                .petId(random.nextLong(100000))
+                .id(random.nextLong(1000000))
+                .petId(random.nextLong(1000000))
                 .quantity(1L)
                 .shipDate("2025-03-06T16:49:51.926Z")
                 .status("placed")
