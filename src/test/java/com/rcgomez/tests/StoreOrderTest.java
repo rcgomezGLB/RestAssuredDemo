@@ -8,7 +8,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.Random;
-import java.util.UUID;
 
 public class StoreOrderTest extends TestRunner {
 
