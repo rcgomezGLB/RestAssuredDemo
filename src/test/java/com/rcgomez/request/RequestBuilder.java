@@ -10,33 +10,24 @@ import java.util.Map;
 
 public class RequestBuilder {
 
-    public static Response getRequest(String baseUrl, String path) {
-        RequestSpecification requestSpecification = RestAssured.given()
+    private static RequestSpecification baseRequest(String baseUrl) {
+        return RestAssured.given()
                 .baseUri(baseUrl)
                 .header("Content-Type", "application/json")
                 .filter(new RequestLoggingFilter())
                 .filter(new ResponseLoggingFilter());
+    }
 
-        return requestSpecification.get(path);
+    public static Response getRequest(String baseUrl, String path) {
+        return baseRequest(baseUrl).get(path);
     }
 
     public static Response postRequest(String baseUrl, String path, Object body) {
-        RequestSpecification requestSpecification = RestAssured.given()
-                .baseUri(baseUrl)
-                .header("Content-Type", "application/json")
-                .filter(new RequestLoggingFilter())
-                .filter(new ResponseLoggingFilter())
-                .body(body);
-
-        return requestSpecification.post(path);
+        return baseRequest(baseUrl).body(body).post(path);
     }
 
     public static Response getRequestWithParams(String baseUrl, String path, Map<String, String> queryParams) {
-        RequestSpecification requestSpecification = RestAssured.given()
-                .baseUri(baseUrl)
-                .header("Content-Type", "application/json")
-                .filter(new RequestLoggingFilter())
-                .filter(new ResponseLoggingFilter());
+        RequestSpecification requestSpecification = baseRequest(baseUrl);
 
         // Add query parameters if they are provided
         if (queryParams != null) {
