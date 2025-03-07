@@ -32,7 +32,6 @@ public class RequestBuilder {
     }
 
     public static Response getRequestWithParams(String baseUrl, String path, Map<String, String> queryParams) {
-        // Create a RequestSpecification
         RequestSpecification requestSpecification = RestAssured.given()
                 .baseUri(baseUrl)
                 .header("Content-Type", "application/json")
