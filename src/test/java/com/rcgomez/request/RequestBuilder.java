@@ -5,6 +5,7 @@ import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import lombok.NonNull;
 
 import java.util.Map;
 
@@ -26,14 +27,12 @@ public class RequestBuilder {
         return baseRequest(baseUrl).body(body).post(path);
     }
 
-    public static Response getRequestWithParams(String baseUrl, String path, Map<String, String> queryParams) {
+    public static Response getRequestWithParams(String baseUrl, String path, @NonNull Map<String, String> queryParams) {
         RequestSpecification requestSpecification = baseRequest(baseUrl);
 
-        // Add query parameters if they are provided
-        if (queryParams != null) {
-            for (Map.Entry<String, String> entry : queryParams.entrySet()) {
-                requestSpecification.queryParam(entry.getKey(), entry.getValue());
-            }
+        // Add query parameters
+        for (Map.Entry<String, String> entry : queryParams.entrySet()) {
+            requestSpecification.queryParam(entry.getKey(), entry.getValue());
         }
 
         // Execute the GET request
