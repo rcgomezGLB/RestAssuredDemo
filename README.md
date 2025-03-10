@@ -33,6 +33,16 @@ Refer to the [PerfDog API Documentation](https://petstore.swagger.io) for detail
        │           └───tests
        └───resources
 ```
+## Directories
+config: Contains configuration files and classes for setting up the test environment.
+
+model: Contains data models representing the API entities such as User, Pet, and Order.
+
+request: Contains classes responsible for making API requests.
+
+tests: Contains the TestNG test classes that execute the API tests.
+
+resources: Contains any additional resources needed for the tests, such as JSON schema files, config properties and TestNG suite.
 
 ## Test Execution
 Run the tests using Maven:
